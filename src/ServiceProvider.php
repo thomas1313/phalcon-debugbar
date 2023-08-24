@@ -86,7 +86,7 @@ class ServiceProvider extends Injectable {
 	}
 
 	protected function setRoute(){
-		$app= $this->di['app'];
+		$app= $this->di['application'];
 		$router = $this->di['router'];
 		if (  $app instanceof Micro ) {
 			$app->get( '/_debugbar/open', function(){
@@ -127,7 +127,7 @@ class ServiceProvider extends Injectable {
 
 	public function boot() {
         /** @var PhalconDebugbar $debugbar */
-		$app      = $this->di['app'];
+		$app      = $this->di['application'];
 		$debugbar = $this->di['debugbar'];
 		$router   = $this->di['router'];
 
@@ -192,7 +192,7 @@ class ServiceProvider extends Injectable {
                 $current = $current->getName();
 
                 if ( strpos($current,'debugbar')===0 ) {
-                    $app = $this->di['app'];
+                    $app = $this->di['application'];
                     if (method_exists( $app, 'useImplicitView' )) {
                         $app->useImplicitView(false);
                     }
@@ -200,7 +200,7 @@ class ServiceProvider extends Injectable {
                     if (  $app instanceof Application  && $app->getModules()) {
                         if($moudleName=$request->get('m')){
                             $this->dispatcher->setModuleName($moudleName);
-                            $moudle=$this->di['app']->getModule($moudleName);
+                            $moudle=$this->di['application']->getModule($moudleName);
                             require $moudle['path'];
                             $moduleObject=$this->di->get($moudle['className']);
                             $moduleObject->registerAutoloaders($this->di);

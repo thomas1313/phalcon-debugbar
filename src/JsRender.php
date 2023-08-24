@@ -44,7 +44,7 @@ class JsRender extends JavascriptRenderer{
         $html = '';
         $di=Di::getDefault();
         /** @var Dispatcher $dispatcher */
-        $app = $di['app'];
+        $app = $di['application'];
         if (  $app instanceof Application ) {
             $dispatcher= $di['dispatcher'];
             $m=$dispatcher->getModuleName();

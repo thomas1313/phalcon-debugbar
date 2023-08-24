@@ -48,7 +48,7 @@ class RouteCollector extends DataCollector implements Renderable {
 		$result['HttpMethods'] = $route->getHttpMethods();
 		$result['RouteName'] = $route->getName();
 		$result['hostname'] = $route->getHostname();
-		if ( $this->di->has('app') && ($app=$this->di['app']) instanceof  Micro ) {
+		if ( $this->di->has('application') && ($app=$this->di['application']) instanceof  Micro ) {
 			if ( ($handler=$app->getActiveHandler()) instanceof \Closure  ||  is_string($handler) ) {
 				$reflector = new \ReflectionFunction($handler);
 			}elseif(is_array($handler)){
